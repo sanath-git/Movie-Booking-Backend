@@ -38,8 +38,8 @@ db.mongoose
     process.exit();
   });
 
-app.use("/api", movieRouter, genreRouter, artistRouter);
-app.use("/api/auth", userRouter);
+app.use("/api", movieRouter, genreRouter, artistRouter, userRouter);
+
 app.listen(PORT, () => {
   console.log("listening to port number " + PORT);
 });
