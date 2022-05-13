@@ -5,9 +5,15 @@ const cors = require("cors");
 const movieRouter = require("./routes/movie.routes");
 const genreRouter = require("./routes/genre.routes");
 const artistRouter = require("./routes/artist.routes");
-
+const userRouter = require("./routes/user.routes");
+const bodyParser = require("body-parser");
 const app = express();
 
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
+
+// parse application/json
+app.use(bodyParser.json());
 const corsOptions = {
   origin: "http://localhost:3001",
 };
@@ -33,7 +39,7 @@ db.mongoose
   });
 
 app.use("/api", movieRouter, genreRouter, artistRouter);
-
+app.use("/api/auth", userRouter);
 app.listen(PORT, () => {
   console.log("listening to port number " + PORT);
 });
